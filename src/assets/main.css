@@ -1,0 +1,18 @@
+html,body{
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+#app{
+	height: 100%;
+}
+
+/* 通用的样式 */
+a {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
