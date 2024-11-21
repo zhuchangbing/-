@@ -1,0 +1,87 @@
+server:
+  port: 9400
+
+spring:
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      database: 0
+      password: ''
+      timeout: 5000
+      jedis:
+        pool:
+          max-active: 50
+          max-wait: 300
+          max-idle: 20
+          min-idle: 2
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/yigou?serverTimezone=GMT%2b8
+    username: root
+    password: '123456'
+  elasticsearch:
+    uris: http://localhost:9200
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      retries: 3
+      acks: all
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    listener:
+      ack-mode: manual_immediate
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+dubbo:
+  application:
+    name: skuService
+    qos-port: 22227
+  registry:
+    address: zookeeper://localhost:2181
+  provider:
+    token: true
+  consumer:
+    timeout: 3000
+  protocol:
+    name: dubbo
+    port: 20885
+upload:
+  path: D:/240702JavaImg/
+
+seata:
+  registry:
+    type: zk
+    zk:
+      server-addr: 127.0.0.1:2181
+      session-timeout: 6000
+      connect-timeout: 2000
+      username:
+      password:
+  tx-service-group: dubbo
+  service:
+    vgroup-mapping:
+      dubbo: seata
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,71 @@
+server:
+  port: 10000
+
+spring:
+  mail:
+    host: smtp.qq.com
+    username: 2484383545@qq.com
+    password: noaklynamlowdjbg
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/yigou?serverTimezone=GMT%2b8
+    username: root
+    password: '123456'
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      retries: 3
+      acks: all
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    listener:
+      ack-mode: manual_immediate
+
+  application:
+    name: userService
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+dubbo:
+  application:
+    name: userService
+    qos-port: 22222
+  registry:
+    address: zookeeper://localhost:2181
+  provider:
+    token: true
+  protocol:
+    name: dubbo
+    port: 20880
+
+seata:
+  registry:
+    type: zk
+    zk:
+      server-addr: 127.0.0.1:2181
+      session-timeout: 6000
+      connect-timeout: 2000
+      username:
+      password:
+  tx-service-group: dubbo
+  service:
+    vgroup-mapping:
+      dubbo: seata
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
